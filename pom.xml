@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.restlet.client</groupId>
-    <artifactId>circleci_</artifactId>
+    <artifactId>data_validation</artifactId>
     <version>1.0.0</version>
     <build>
         <plugins>
             <plugin>
-                <groupId>com.restlet.client</groupId>
+                 <groupId>com.restlet.client</groupId>
                 <artifactId>maven-plugin</artifactId>
-                <version>2.11.2</version>
+                <version>2.4.0</version>
                 <executions>
                     <execution>
                         <phase>test</phase>
@@ -16,8 +16,7 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                          <file>/circleci-test.json</file>
-                          <selectedEnvironment>CircleCI</selectedEnvironment>
+                          <file>circleci-test.json</file>
                           <licenseKey>${license_key}</licenseKey>
                         </configuration>
                     </execution>
@@ -28,7 +27,7 @@
     <pluginRepositories>
         <pluginRepository>
            <id>restlet-public</id>
-           <name>Restlet public Release Repository</name>
+           <name>Restlet Public Repository</name>
            <url>http://maven.restlet.com</url>
        </pluginRepository>
     </pluginRepositories>

@@ -18,7 +18,7 @@
                         <configuration>
                           <file>CircleCI_.json</file>
                           <selectedEnvironment>CircleCI</selectedEnvironment>
-                          <licenseKey></licenseKey>
+                          <licenseKey>${license_key}</licenseKey>
                         </configuration>
                     </execution>
                 </executions>

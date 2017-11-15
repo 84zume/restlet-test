@@ -3,4 +3,4 @@ machine:
     version: openjdk8
 test:
   override:
-    - mvn test
+    - mvn test -Dlicense_key=$LICENSE_KEY

@@ -1,0 +1,1755 @@
+{
+  "front-version": "2.11.2",
+  "version": 3,
+  "nodes": [
+    {
+      "type": "Project",
+      "id": "8f042669-4224-48c4-9917-93e28fac37f2",
+      "lastModified": "2017-11-14T15:53:23.597+09:00",
+      "name": "認証認可検証",
+      "remoteModification": "2017-11-14T06:53:22.966Z"
+    },
+    {
+      "type": "Service",
+      "description": "",
+      "id": "67bf7081-216f-469a-8e71-04c5f17c87ed",
+      "lastModified": "2017-11-14T15:49:22.712+09:00",
+      "name": "01_正常系単体テスト",
+      "parentId": "8f042669-4224-48c4-9917-93e28fac37f2"
+    },
+    {
+      "type": "Scenario",
+      "id": "5bd6a192-32a1-4f1c-9682-76f096086642",
+      "lastModified": "2017-11-14T05:32:42.153+09:00",
+      "name": "01-01_ユニークID発行",
+      "requestOrder": [
+        "ユニークID発行"
+      ],
+      "parentId": "67bf7081-216f-469a-8e71-04c5f17c87ed"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\"client_info\":{\"osType\":1,\"osVersion\":\"1.1.1.1\",\"modelName\":\"hogehoge\",\"appVersion\":\"2.2.2.2\"}}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"authext-url\"}",
+        "path": "/client"
+      },
+      "id": "a03d50be-216b-476a-9f17-eaca670c6179",
+      "lastModified": "2017-11-14T05:32:42.153+09:00",
+      "name": "ユニークID発行",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        },
+        {
+          "comparison": "Equals",
+          "subject": "ResponseJsonBody",
+          "enabled": false,
+          "value": "200"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "5bd6a192-32a1-4f1c-9682-76f096086642"
+    },
+    {
+      "type": "Scenario",
+      "id": "db2abb94-3090-4ea2-aaae-d6bf282a64ab",
+      "lastModified": "2017-11-14T05:34:51.559+09:00",
+      "name": "01-02_トークンエンドポイント",
+      "requestOrder": [
+        "トークンエンドポイント"
+      ],
+      "parentId": "67bf7081-216f-469a-8e71-04c5f17c87ed"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=SGPN6VZ9NR3A&password=jhP69Xqm1Si2e1frbDjZjlVRIScuHSwdurrOgQnXeZRp1m3yDFY3IVvTNyRFlqWIdYB5hwMnYTCz76pTtYgqzdQcaeGeDID4J9KwpHWMI4nAQBLPzzpysbJZ0pFZoPZc&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "ce02ee51-8c45-466c-8e3a-f8436e9bb327",
+      "lastModified": "2017-11-14T05:39:35.802+09:00",
+      "name": "トークンエンドポイント",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "db2abb94-3090-4ea2-aaae-d6bf282a64ab"
+    },
+    {
+      "type": "Scenario",
+      "id": "1847fe9e-2419-4b3e-ace9-cc239db0d60f",
+      "lastModified": "2017-11-14T05:33:53.463+09:00",
+      "name": "01-03_イントロスペクションエンドポイント",
+      "requestOrder": [
+        "イントロスペクションエンドポイント"
+      ],
+      "parentId": "67bf7081-216f-469a-8e71-04c5f17c87ed"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/verify"
+      },
+      "id": "815d14b2-13ff-47e2-a45f-d37aa7bac717",
+      "lastModified": "2017-11-14T05:36:56.902+09:00",
+      "name": "イントロスペクションエンドポイント",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Bearer SpSB2LXfw258uzOTzt5wxibDAk7XoiSK"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "1847fe9e-2419-4b3e-ace9-cc239db0d60f"
+    },
+    {
+      "type": "Service",
+      "id": "66ddf0f1-a5b2-41ba-91db-ec39c297a1d1",
+      "lastModified": "2017-11-14T05:29:21.062+09:00",
+      "name": "02_異常系単体テスト",
+      "parentId": "8f042669-4224-48c4-9917-93e28fac37f2"
+    },
+    {
+      "type": "Service",
+      "id": "6302d4c9-d5db-4dfc-a815-eb86e6fe3da5",
+      "lastModified": "2017-11-14T05:28:14.510+09:00",
+      "name": "03_シナリオテスト",
+      "parentId": "8f042669-4224-48c4-9917-93e28fac37f2"
+    },
+    {
+      "type": "Scenario",
+      "description": "すべてのAPIを流れでたたきます。正常系です。",
+      "id": "752bd33b-2732-40c8-bd95-0a46323837c8",
+      "lastModified": "2017-11-14T05:44:15.837+09:00",
+      "name": "03-01_ST_RE_一気通貫",
+      "requestOrder": [
+        "ユニークID発行",
+        "トークンエンドポイント",
+        "イントロスペクションエンドポイント",
+        "ユニークID発行（2回目）",
+        "トークンエンドポイント（2回目）",
+        "イントロスペクションエンドポイント（2回目）"
+      ],
+      "parentId": "6302d4c9-d5db-4dfc-a815-eb86e6fe3da5"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\"client_info\":{\"osType\":1,\"osVersion\":\"1.1.1.1\",\"modelName\":\"hogehoge\",\"appVersion\":\"2.2.2.2\"}}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"authext-url\"}",
+        "path": "/client"
+      },
+      "id": "60d16a3f-4ae4-486b-9fea-fa55af34ed23",
+      "lastModified": "2017-11-14T05:28:13.966+09:00",
+      "name": "ユニークID発行",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        },
+        {
+          "comparison": "Equals",
+          "subject": "ResponseJsonBody",
+          "enabled": false,
+          "value": "200"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "752bd33b-2732-40c8-bd95-0a46323837c8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=${\"認証認可検証\".\"03_シナリオテスト\".\"03-01_ST_RE_一気通貫\".\"ユニークID発行\".\"response\".\"body\".\"uid\"}&password=${\"認証認可検証\".\"03_シナリオテスト\".\"03-01_ST_RE_一気通貫\".\"ユニークID発行\".\"response\".\"body\".\"password\"}&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "52f3a5cf-f907-4ba0-a336-0a9a3ea550d9",
+      "lastModified": "2017-11-14T05:40:55.784+09:00",
+      "name": "トークンエンドポイント",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "752bd33b-2732-40c8-bd95-0a46323837c8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/verify"
+      },
+      "id": "825b7f76-cd49-465c-9510-04d12f9b7268",
+      "lastModified": "2017-11-14T05:41:35.831+09:00",
+      "name": "イントロスペクションエンドポイント",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Bearer ${\"認証認可検証\".\"03_シナリオテスト\".\"03-01_ST_RE_一気通貫\".\"トークンエンドポイント\".\"response\".\"body\".\"access_token\"}"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "752bd33b-2732-40c8-bd95-0a46323837c8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\n  \"client_info\":{\n            \"osType\":1,\n            \"osVersion\":\"1.1.1.1\",\n            \"modelName\":\"hogehoge\",\n            \"appVersion\":\"2.2.2.2\"\n          }\n}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"authext-url\"}",
+        "path": "/client"
+      },
+      "id": "9d46dbb0-b1c6-42aa-8a4d-b51f048332ce",
+      "lastModified": "2017-11-14T05:28:13.970+09:00",
+      "name": "ユニークID発行（2回目）",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "752bd33b-2732-40c8-bd95-0a46323837c8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=${\"認証認可検証\".\"03_シナリオテスト\".\"03-01_ST_RE_一気通貫\".\"ユニークID発行（2回目）\".\"response\".\"body\".\"uid\"}&password=${\"認証認可検証\".\"03_シナリオテスト\".\"03-01_ST_RE_一気通貫\".\"ユニークID発行（2回目）\".\"response\".\"body\".\"password\"}&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "199f000c-de24-4cbb-8cf0-aa8506611902",
+      "lastModified": "2017-11-14T05:45:35.908+09:00",
+      "name": "トークンエンドポイント（2回目）",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "752bd33b-2732-40c8-bd95-0a46323837c8"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/verify"
+      },
+      "id": "f063f1da-2f03-4f30-869b-433024a01f66",
+      "lastModified": "2017-11-14T05:46:15.889+09:00",
+      "name": "イントロスペクションエンドポイント（2回目）",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Bearer ${\"認証認可検証\".\"03_シナリオテスト\".\"03-01_ST_RE_一気通貫\".\"トークンエンドポイント（2回目）\".\"response\".\"body\".\"access_token\"}"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "752bd33b-2732-40c8-bd95-0a46323837c8"
+    },
+    {
+      "type": "Scenario",
+      "description": "シナリオテスト\n正常系\nトークンエンドポイントを5回、イントロスペクションエンドポイントを5回、連続で呼び出す試験",
+      "id": "77e28532-d30d-4be3-8dd5-26b061407d2e",
+      "lastModified": "2017-11-14T05:28:23.783+09:00",
+      "name": "03-02_ST_RE_TEとIEを連続呼び出し",
+      "requestOrder": [
+        "トークンエンドポイント1",
+        "トークンエンドポイント2",
+        "トークンエンドポイント3",
+        "トークンエンドポイント4",
+        "トークンエンドポイント5",
+        "イントロスペクションエンドポイント1",
+        "イントロスペクションエンドポイント2",
+        "イントロスペクションエンドポイント3",
+        "イントロスペクションエンドポイント4",
+        "イントロスペクションエンドポイント5"
+      ],
+      "parentId": "6302d4c9-d5db-4dfc-a815-eb86e6fe3da5"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=SGOIQNFQK8NG&password=i3Lo5BgjnXyDleSlK4Ti7oTWF3jX54As7Fu0NuF9cI1FezayMzz10xZ5bDQnUvSsM1Gh8FzLwRszQaW42eV23mZhkoJePpjFs0a3MNoXfJO3BxP57if22ZTMz8E8NQfa&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "d73c480c-feb4-462b-8d94-c1d12db4b24d",
+      "lastModified": "2017-11-14T05:28:23.784+09:00",
+      "name": "トークンエンドポイント1",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=SGOIQNFQK8NG&password=i3Lo5BgjnXyDleSlK4Ti7oTWF3jX54As7Fu0NuF9cI1FezayMzz10xZ5bDQnUvSsM1Gh8FzLwRszQaW42eV23mZhkoJePpjFs0a3MNoXfJO3BxP57if22ZTMz8E8NQfa&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "6d135d09-7c9a-4210-a66f-47296c7d3811",
+      "lastModified": "2017-11-14T05:28:23.784+09:00",
+      "name": "トークンエンドポイント2",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=SGOIQNFQK8NG&password=i3Lo5BgjnXyDleSlK4Ti7oTWF3jX54As7Fu0NuF9cI1FezayMzz10xZ5bDQnUvSsM1Gh8FzLwRszQaW42eV23mZhkoJePpjFs0a3MNoXfJO3BxP57if22ZTMz8E8NQfa&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "e87e6d15-ae3d-4a66-ab78-2b3fe979d489",
+      "lastModified": "2017-11-14T05:28:23.785+09:00",
+      "name": "トークンエンドポイント3",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=SGOIQNFQK8NG&password=i3Lo5BgjnXyDleSlK4Ti7oTWF3jX54As7Fu0NuF9cI1FezayMzz10xZ5bDQnUvSsM1Gh8FzLwRszQaW42eV23mZhkoJePpjFs0a3MNoXfJO3BxP57if22ZTMz8E8NQfa&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "cee7e316-098b-4b3a-aee6-5b429eaa8f72",
+      "lastModified": "2017-11-14T05:28:23.785+09:00",
+      "name": "トークンエンドポイント4",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=SGOIQNFQK8NG&password=i3Lo5BgjnXyDleSlK4Ti7oTWF3jX54As7Fu0NuF9cI1FezayMzz10xZ5bDQnUvSsM1Gh8FzLwRszQaW42eV23mZhkoJePpjFs0a3MNoXfJO3BxP57if22ZTMz8E8NQfa&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "99828d52-202f-4b74-940e-bddc9c5b5608",
+      "lastModified": "2017-11-14T05:28:23.785+09:00",
+      "name": "トークンエンドポイント5",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/verify"
+      },
+      "id": "c675cbab-336a-4e44-8b89-7482516a63eb",
+      "lastModified": "2017-11-14T13:33:51.353+09:00",
+      "name": "イントロスペクションエンドポイント1",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Bearer ${\"認証認可検証\".\"03_シナリオテスト\".\"03-02_ST_RE_TEとIEを連続呼び出し\".\"トークンエンドポイント5\".\"response\".\"body\".\"access_token\"}"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/verify"
+      },
+      "id": "9910bfc0-1d89-44b3-89d0-7dbe6b81d2d2",
+      "lastModified": "2017-11-14T13:34:31.369+09:00",
+      "name": "イントロスペクションエンドポイント2",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Bearer ${\"認証認可検証\".\"03_シナリオテスト\".\"03-02_ST_RE_TEとIEを連続呼び出し\".\"トークンエンドポイント5\".\"response\".\"body\".\"access_token\"}"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/verify"
+      },
+      "id": "d1393d58-0c3f-44f4-a97b-edb78d5f7fc6",
+      "lastModified": "2017-11-14T13:34:31.369+09:00",
+      "name": "イントロスペクションエンドポイント3",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Bearer ${\"認証認可検証\".\"03_シナリオテスト\".\"03-02_ST_RE_TEとIEを連続呼び出し\".\"トークンエンドポイント5\".\"response\".\"body\".\"access_token\"}"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/verify"
+      },
+      "id": "3b85058a-3bba-4d07-8c3d-a5c080d91094",
+      "lastModified": "2017-11-14T13:34:31.368+09:00",
+      "name": "イントロスペクションエンドポイント4",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Bearer ${\"認証認可検証\".\"03_シナリオテスト\".\"03-02_ST_RE_TEとIEを連続呼び出し\".\"トークンエンドポイント5\".\"response\".\"body\".\"access_token\"}"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/verify"
+      },
+      "id": "dfeea010-dac2-41ad-bd17-6223d69a0020",
+      "lastModified": "2017-11-14T13:34:31.369+09:00",
+      "name": "イントロスペクションエンドポイント5",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Authorization",
+          "value": "Bearer ${\"認証認可検証\".\"03_シナリオテスト\".\"03-02_ST_RE_TEとIEを連続呼び出し\".\"トークンエンドポイント5\".\"response\".\"body\".\"access_token\"}"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "77e28532-d30d-4be3-8dd5-26b061407d2e"
+    },
+    {
+      "type": "Scenario",
+      "description": "シナリオテスト\n正常系\nアプリを使いたくない人運用",
+      "id": "27ae912b-2cd2-4a92-8d0a-eeb515c8c992",
+      "lastModified": "2017-11-14T13:29:44.799+09:00",
+      "name": "03-03_ST_RE_アプリを使いたくない人運用",
+      "requestOrder": [
+        "ユニークID発行",
+        "トークンエンドポイント（正常）",
+        "ユニークID検索（検索結果あり）",
+        "ユニークID削除",
+        "ユニークID検索（検索結果なし）",
+        "トークンエンドポイント（異常）"
+      ],
+      "parentId": "6302d4c9-d5db-4dfc-a815-eb86e6fe3da5"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "{\"client_info\":{\"osType\":1,\"osVersion\":\"1.1.1.1\",\"modelName\":\"hogehoge\",\"appVersion\":\"2.2.2.2\"}}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"authext-url\"}",
+        "path": "/client"
+      },
+      "id": "4c2c6bca-4a37-4437-a62f-0737207e67ab",
+      "lastModified": "2017-11-14T05:28:34.803+09:00",
+      "name": "ユニークID発行",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "27ae912b-2cd2-4a92-8d0a-eeb515c8c992"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=${\"認証認可検証\".\"03_シナリオテスト\".\"03-03_ST_RE_アプリを使いたくない人運用\".\"ユニークID発行\".\"response\".\"body\".\"uid\"}&password=${\"認証認可検証\".\"03_シナリオテスト\".\"03-03_ST_RE_アプリを使いたくない人運用\".\"ユニークID発行\".\"response\".\"body\".\"password\"}&scope=SCOPE0001&client_id=srgapp\n"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "035df63f-f141-4ced-bea4-3417386c7fa9",
+      "lastModified": "2017-11-14T15:53:22.747+09:00",
+      "name": "トークンエンドポイント（正常）",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "27ae912b-2cd2-4a92-8d0a-eeb515c8c992"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "SITE_ID=rp_site&ID=${\"認証認可検証\".\"03_シナリオテスト\".\"03-03_ST_RE_アプリを使いたくない人運用\".\"ユニークID発行\".\"response\".\"body\".\"uid\"}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"authext-url\"}",
+        "path": "/co/uid-search"
+      },
+      "description": "",
+      "id": "3a7a0bce-1337-4215-846e-17b777eeee3f",
+      "lastModified": "2017-11-14T07:40:35.436+09:00",
+      "name": "ユニークID検索（検索結果あり）",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        },
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Contains",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": "success"
+        },
+        {
+          "comparison": "Contains",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": "\"DELETE_FLAG\":\"0\""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "27ae912b-2cd2-4a92-8d0a-eeb515c8c992"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "SITE_ID=rp_site&UID=${\"認証認可検証\".\"03_シナリオテスト\".\"03-03_ST_RE_アプリを使いたくない人運用\".\"ユニークID検索（検索結果あり）\".\"response\".\"body\".\"resultList\".\"0\".\"UID\"}&PHYSICAL_DELETE_FLAG=false "
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"authext-url\"}",
+        "path": "/co/uid-delete"
+      },
+      "id": "a6409fa2-3e72-49b8-877e-1a79fb628797",
+      "lastModified": "2017-11-14T07:51:46.867+09:00",
+      "name": "ユニークID削除",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Contains",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": "success"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "27ae912b-2cd2-4a92-8d0a-eeb515c8c992"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBody": "SITE_ID=rp_site&ID=${\"認証認可検証\".\"03_シナリオテスト\".\"03-03_ST_RE_アプリを使いたくない人運用\".\"ユニークID発行\".\"response\".\"body\".\"uid\"}"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"authext-url\"}",
+        "path": "/co/uid-search"
+      },
+      "description": "",
+      "id": "11c09211-2656-4062-b4c7-11ed224afb5a",
+      "lastModified": "2017-11-14T07:40:35.436+09:00",
+      "name": "ユニークID検索（検索結果なし）",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        },
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "200"
+        },
+        {
+          "comparison": "Contains",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": "success"
+        },
+        {
+          "comparison": "Contains",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": "\"DELETE_FLAG\":\"1\""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "27ae912b-2cd2-4a92-8d0a-eeb515c8c992"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "requestBody": true,
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+        "name": "POST"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded"
+        },
+        "bodyType": "Text",
+        "autoSetLength": true,
+        "textBodyEditorHeight": 227,
+        "textBody": "grant_type=password&username=${\"認証認可検証\".\"03_シナリオテスト\".\"03-03_ST_RE_アプリを使いたくない人運用\".\"ユニークID発行\".\"response\".\"body\".\"uid\"}&password=${\"認証認可検証\".\"03_シナリオテスト\".\"03-03_ST_RE_アプリを使いたくない人運用\".\"ユニークID発行\".\"response\".\"body\".\"password\"}&scope=SCOPE0001&client_id=srgapp"
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "secure": true,
+          "name": "https",
+          "version": "V11"
+        },
+        "host": "${\"nec-url\"}",
+        "path": "/token"
+      },
+      "id": "95900c36-3154-4cee-8312-4eb932b03e8a",
+      "lastModified": "2017-11-14T11:35:10.065+09:00",
+      "name": "トークンエンドポイント（異常）",
+      "headers": [
+        {
+          "enabled": true,
+          "name": "Content-Type",
+          "value": "application/x-www-form-urlencoded"
+        },
+        {
+          "enabled": true,
+          "name": "x-api-key",
+          "value": "testauthkey01"
+        }
+      ],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "400"
+        },
+        {
+          "comparison": "Exists",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": ""
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "27ae912b-2cd2-4a92-8d0a-eeb515c8c992"
+    },
+    {
+      "type": "Context",
+      "id": "c9f3dee9-d81f-4048-97ac-85ecf162b4e3",
+      "lastModified": "2017-11-10T13:37:30.743+09:00",
+      "name": "認証認可基盤",
+      "variables": [
+        {
+          "enabled": true,
+          "name": "authext-url",
+          "value": "https://auth.ourapi.net"
+        },
+        {
+          "enabled": true,
+          "name": "nec-url",
+          "value": "https://auth.ourapi.net/oauth2"
+        }
+      ]
+    }
+  ]
+}

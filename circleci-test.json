@@ -1,0 +1,139 @@
+{
+  "front-version": "2.11.2",
+  "version": 3,
+  "nodes": [
+    {
+      "type": "Project",
+      "id": "568d75d0-fa41-47bf-8549-b4a68a4db853",
+      "lastModified": "2017-11-15T14:18:49.084+09:00",
+      "name": "CircleCI検証",
+      "remoteModification": "2017-11-15T05:18:47.340Z"
+    },
+    {
+      "type": "Scenario",
+      "id": "e6473c84-b44a-43a1-bfb7-1c114346aa63",
+      "lastModified": "2017-11-15T14:17:28.418+09:00",
+      "name": "test_case",
+      "requestOrder": [
+        "test_case_01",
+        "test_case_02"
+      ],
+      "parentId": "568d75d0-fa41-47bf-8549-b4a68a4db853"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "stubonweb.herokuapp.com",
+        "path": "/0f16ff926d07"
+      },
+      "id": "4cbadf6c-2203-4ad0-b8ad-5c5c5b433339",
+      "lastModified": "2017-11-15T14:17:12.527+09:00",
+      "name": "test_case_01",
+      "headers": [],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "402"
+        },
+        {
+          "comparison": "Equals",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": "hoge"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "e6473c84-b44a-43a1-bfb7-1c114346aa63"
+    },
+    {
+      "type": "Request",
+      "method": {
+        "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+        "name": "GET"
+      },
+      "body": {
+        "formBody": {
+          "overrideContentType": true,
+          "encoding": "application/x-www-form-urlencoded",
+          "items": []
+        },
+        "bodyType": "Text",
+        "autoSetLength": true
+      },
+      "headersType": "Form",
+      "uri": {
+        "query": {
+          "delimiter": "&",
+          "items": []
+        },
+        "scheme": {
+          "name": "http",
+          "version": "V11"
+        },
+        "host": "stubonweb.herokuapp.com",
+        "path": "/${\"url-param\"}"
+      },
+      "id": "a864c5f3-e577-4a56-87ad-18b148ce3035",
+      "lastModified": "2017-11-15T14:18:49.085+09:00",
+      "name": "test_case_02",
+      "headers": [],
+      "assertions": [
+        {
+          "comparison": "Equals",
+          "subject": "ResponseStatus",
+          "path": "code",
+          "value": "502"
+        },
+        {
+          "comparison": "Equals",
+          "subject": "ResponseBody",
+          "path": "content",
+          "value": "fuji"
+        }
+      ],
+      "metaInfo": {
+        "ownerId": "auth0|5a08eacc17a25d640bb0d06b"
+      },
+      "parentId": "e6473c84-b44a-43a1-bfb7-1c114346aa63"
+    },
+    {
+      "type": "Context",
+      "id": "ebc9014b-3036-4ab8-b909-75a470d6058c",
+      "lastModified": "2017-11-15T14:18:14.842+09:00",
+      "name": "CircleCI",
+      "variables": [
+        {
+          "enabled": true,
+          "name": "url-param",
+          "value": "228f848b726e"
+        }
+      ]
+    }
+  ]
+}

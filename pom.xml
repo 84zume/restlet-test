@@ -16,7 +16,7 @@
                             <goal>test</goal>
                         </goals>
                         <configuration>
-                          <file>CircleCI_.json</file>
+                          <file>circleci-test.json</file>
                           <selectedEnvironment>CircleCI</selectedEnvironment>
                           <licenseKey>${license_key}</licenseKey>
                         </configuration>
